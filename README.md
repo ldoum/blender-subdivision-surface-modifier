@@ -1,4 +1,4 @@
-# blender-subdivision-surface-modifier
+# blender-subsurf-modifier-applier
 Applies the subdivision surface modifier to all meshes selected in a batch.
 
 The reason why I made this script was because I grew tired of adding the same modifier for every mesh object on my blockouts. 
