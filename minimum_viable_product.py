@@ -81,7 +81,12 @@ for obj in bpy.context.selected_objects:
         case 2:
             
             say_name_delete = "Subdivision.001"
-            remove_exact_mod(obj, say_name_delete)
+
+            #check if modifier exists before removing
+            mod_exists = obj.modifiers[say_name_delete]
+            
+            if mod_exists:
+                remove_exact_mod(obj, say_name_delete)
             
             #added the clear all mods feature
         case 3:
