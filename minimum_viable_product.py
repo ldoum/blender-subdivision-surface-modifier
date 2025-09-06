@@ -57,15 +57,15 @@ for obj in bpy.context.selected_objects:
 
     #main input
     option = 2
-    
-    #input here
-    mod_type = 'SUBSURF'
-    tag = 'subdivide seriously'
-    default = 'no'
-    
+
     match option:
         
         case 1:
+            
+            #input here
+            mod_type = 'SUBSURF'
+            tag = 'Subdivide surface'
+            default = 'no'
             
             if obj.type == 'MESH':  
         
@@ -82,28 +82,30 @@ for obj in bpy.context.selected_objects:
                  
             bpy.context.view_layer.objects.active = obj
             
+            
         case 2:
             
-            say_name_delete = "Subdivision.001"
-
-            mod_exists = obj.modifiers.get(say_name_delete)
+            del_tag = 'Subdivide surface'
+            
+            mod_exists = obj.modifiers.get(del_tag)
             
             if mod_exists:
-                remove_exact_mod(obj, say_name_delete)
+                remove_exact_mod(obj, del_tag)
             
-            
+            #added the clear all mods feature
         case 3:
             
             for wipe in obj.modifiers:
                 obj.modifiers.remove(wipe)
-
-               
+                
         case 4:
+            apply_tag = 'Subdivide surface'
             
             #added the apply modifier
-            mod_is_there = obj.modifiers.get(tag)
-            
-            if mod_is_there:
-                bpy.ops.object.modifier_apply(modifier=tag)
+            if apply_tag in obj.modifiers:
+                
+                bpy.context.view_layer.objects.active = obj #need this before the bottom line
+                bpy.ops.object.modifier_apply(modifier=apply_tag)
+
         case _:
             pass
