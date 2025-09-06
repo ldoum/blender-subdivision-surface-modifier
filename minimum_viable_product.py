@@ -1,4 +1,4 @@
-#written on Tuesdy 9/2/2025 1122pm
+#first written on Tuesday 9/2/2025 1122pm
 import bpy
 
 """
@@ -48,11 +48,20 @@ def remove_exact_mod(unwanted, retrieve):
 for obj in bpy.context.selected_objects:
     
     """
-    option 1 to add mod, 2 for deletion for specific mod, 3 for deletion of all mods
+    options 
+    1 to add mod, 
+    2 for deletion for specific mod, 
+    3 for deletion of all mods, 
+    4 for applying the existing mod
     """
 
     #main input
     option = 2
+    
+    #input here
+    mod_type = 'SUBSURF'
+    tag = 'subdivide seriously'
+    default = 'no'
     
     match option:
         
@@ -60,11 +69,6 @@ for obj in bpy.context.selected_objects:
             
             if obj.type == 'MESH':  
         
-                #input here
-                mod_type = 'SUBSURF'
-                tag = 'subdivide seriously'
-                default = 'no'
-   
                 match mod_type:
              
                     case 'SUBSURF':
@@ -82,17 +86,24 @@ for obj in bpy.context.selected_objects:
             
             say_name_delete = "Subdivision.001"
 
-            #check if modifier exists before removing
             mod_exists = obj.modifiers.get(say_name_delete)
             
             if mod_exists:
                 remove_exact_mod(obj, say_name_delete)
             
-            #added the clear all mods feature
+            
         case 3:
             
             for wipe in obj.modifiers:
                 obj.modifiers.remove(wipe)
 
+               
+        case 4:
+            
+            #added the apply modifier
+            mod_is_there = obj.modifiers.get(tag)
+            
+            if mod_is_there:
+                bpy.ops.object.modifier_apply(modifier=tag)
         case _:
             pass
