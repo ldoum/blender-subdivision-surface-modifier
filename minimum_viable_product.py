@@ -102,7 +102,9 @@ for obj in bpy.context.selected_objects:
             apply_tag = 'Subdivide surface'
             
             #added the apply modifier
-            if apply_tag in obj.modifiers:
+            mod_is_here = obj.modifiers.get(apply_tag)
+            
+            if mod_is_here:
                 
                 bpy.context.view_layer.objects.active = obj #need this before the bottom line
                 bpy.ops.object.modifier_apply(modifier=apply_tag)
