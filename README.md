@@ -11,3 +11,4 @@ Features so far:
 1. Adds the modifier with specific name
 2. Deletes the modifier by name
 3. Erases all modifiers from each object at once.
+4. Applies a modifier by name only
